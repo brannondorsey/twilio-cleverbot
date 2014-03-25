@@ -24,6 +24,8 @@ module.exports = {
 }
 ```
 
+Rename `config.sample.js` to `config.js`.
+
 ## Run
 
 Start the server from outside of the cloned directory:
