@@ -11,13 +11,14 @@ var app = express();
 app.use(express.urlencoded());
 app.post('/cleverbot', function(req, res){
 
-  console.log("got a request!")
-  if (!_.isUndefined(getQueryParam("to", req)) &&
-  	  !_.isUndefined(getQueryParam("from", req)) &&
-  	  !_.isUndefined(getQueryParam("body", req))){
-  	console.log("To: " + getQueryParam("to", req));
-  	console.log("From: " + getQueryParam("from", req));
-  	console.log("Text: " + getQueryParam("body", req));
+  console.log("got a request!");
+  console.log(req.body);
+  if (!_.isUndefined(getQueryParam("To", req)) &&
+  	  !_.isUndefined(getQueryParam("From", req)) &&
+  	  !_.isUndefined(getQueryParam("Body", req))){
+  	console.log("To: " + getQueryParam("To", req));
+  	console.log("From: " + getQueryParam("From", req));
+  	console.log("Text: " + getQueryParam("Body", req));
   	console.log();
   }
 
