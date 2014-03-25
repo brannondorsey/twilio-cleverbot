@@ -8,8 +8,9 @@ var express = require('express');
 var app = express();
 
 app.use(express.urlencoded());
-app.post('/cleverbot', function(req, res){
+app.get('/cleverbot', function(req, res){
 
+  console.log("got a request!")
   if (_.isUndefined(req.body.to) &&
   	  _.isUndefined(req.body.from) &&
   	  _.isUndefined(req.body.body)){
@@ -19,7 +20,7 @@ app.post('/cleverbot', function(req, res){
   	console.log();
   }
 
-  app.send(200, "Message Recieved");
+  res.send("Message Recieved");
   // res.send('Hi Brannon!');
   // if (isSentFromTwilio) {
   // text(number);
