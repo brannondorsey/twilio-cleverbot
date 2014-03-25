@@ -38,6 +38,10 @@ fs.readFile(__dirname + '/../data/rate_model.json', 'utf-8', function(err, data)
       res.send("Post ping recieved at " + timestamp);
     });
 
+    app.get("/", function(req, res) {
+      res.send("Twilio-cleverbot is running! Text " + config.twilioNumber + " to chat with <a href=\"http://cleverbot.com\">Cleverbot</a>.");
+    });
+
     server = app.listen(config.port, function() {
         console.log('Listening on port %d', server.address().port);
     });
