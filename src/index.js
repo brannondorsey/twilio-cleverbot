@@ -12,9 +12,9 @@ app.use(express.urlencoded());
 app.get('/cleverbot', function(req, res){
 
   console.log("got a request!")
-  if (_.isUndefined(req.body.to) &&
-  	  _.isUndefined(req.body.from) &&
-  	  _.isUndefined(req.body.body)){
+  if (!_.isUndefined(req.body.to) &&
+  	  !_.isUndefined(req.body.from) &&
+  	  !_.isUndefined(req.body.body)){
   	console.log("To: " + req.body.to);
   	console.log("From: " + req.body.from);
   	console.log("Text: " + req.body.body);
