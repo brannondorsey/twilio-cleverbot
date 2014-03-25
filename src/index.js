@@ -31,7 +31,6 @@ fs.readFile('data/rate_model.json', 'utf-8', function(err, data){
         console.log("From: " + getQueryParam("From", req));
         console.log("Text: \"" + getQueryParam("Body", req) + "\"");
         text(getQueryParam("Body", req), getQueryParam("From", req));
-        console.log();
        
       }
 
@@ -53,6 +52,7 @@ function text(message, phoneNumber) {
 
     var timeout = _.sample(rateModel) * 1000 * 60;
     console.log("Will respond with: \"" + response.message + "\" in " + timeout / 1000 / 60 + " minutes.");
+    console.log();
 		setTimeout( function(){
 
       twilioClient.sendMessage({
