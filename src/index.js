@@ -1,4 +1,5 @@
 var config = require('../config'),
+_ = require('underscore')._,
 express = require('express'),
 twilio = require('twilio')(config.accountSid, config.authToken),
 Cleverbot = require('cleverbot-node');
@@ -20,7 +21,7 @@ app.get('/cleverbot', function(req, res){
   	console.log();
   }
 
-  req.send("Message Recieved");
+  res.send("Message Recieved");
   // res.send('Hi Brannon!');
   // if (isSentFromTwilio) {
   // text(number);
