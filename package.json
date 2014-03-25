@@ -1,0 +1,35 @@
+{
+  "name": "twilio-cleverbot",
+  "version": "0.0.1",
+  "description": "Talk to Cleverbot from your phone",
+  "keywords": [
+    "chatbot",
+    "artificial intelligence",
+    "ai"
+  ],
+  "homepage": "https://github.com/brannondorsey/twilio-cleverbot",
+  "bugs": {
+    "url": "http://github.com/brannondorsey/twilio-cleverbot/issues",
+    "email": "brannon@brannondorsey.com"
+  },
+  "author": "Brannon Dorsey <brannon@brannondorsey.com> (http://brannondorsey.com)",
+  "directories": {
+    "lib": "src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brannondorsey/twilio-cleverbot.git"
+  },
+  "dependencies" : {
+    "twilio": "1.6.0",
+    "express": "3.5.0",
+    "cleverbot-node": "0.1.2"
+  },
+  "engines": {
+    "node": ">=v0.10.0"
+  },
+  "license": {
+    "url": "https://raw.github.com/brannondorsey/twilio-cleverbot/master/license",
+    "type": "MIT"
+  }
+}
