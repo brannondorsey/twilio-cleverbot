@@ -51,5 +51,5 @@ You can check if your server is running by pointing your browser to:
 
 	http://yourdomain:yourport
 
-If if is you should get the following response:
+If it is you should get the following response:
 <p style="font-family: 'Times New Roman', Times, serif; font-size: 18px">Twilio-cleverbot is running! Text +15692878254 to chat with <a href="http://cleverbot.com"">Cleverbot</a>.</p>
