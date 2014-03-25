@@ -26,13 +26,13 @@ fs.readFile('data/rate_model.json', 'utf-8', function(err, data){
           !_.isUndefined(getQueryParam("From", req)) &&
           !_.isUndefined(getQueryParam("Body", req))){
 
-        text(getQueryParam("Body", req), getQueryParam("From", req));
-      
         console.log(timestamp);
         console.log("To: " + getQueryParam("To", req));
         console.log("From: " + getQueryParam("From", req));
-        console.log("Text: " + getQueryParam("Body", req));
+        console.log("Text: \"" + getQueryParam("Body", req) + "\"");
+        text(getQueryParam("Body", req), getQueryParam("From", req));
         console.log();
+       
       }
 
       res.send("Post ping recieved at " + timestamp);
@@ -51,6 +51,8 @@ function text(message, phoneNumber) {
 
 	cleverbot.write(message, function(response){
 
+    var timeout = _.sample(rateModel) * 1000 * 60;
+    console.log("Will respond with: \"" + response.message + "\" in " + timeout + " seconds.");
 		setTimeout( function(){
 
       twilioClient.sendMessage({
@@ -62,7 +64,7 @@ function text(message, phoneNumber) {
 				console.log("Sent to " + phoneNumber + ": " + response.message); 
 			});
 
-    }, _.sample(rateModel) * 1000 * 60);
+    }, timeout);
 
 	});
 }
