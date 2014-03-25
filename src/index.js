@@ -41,7 +41,7 @@ function text(message, phoneNumber) {
 	cleverbot.write(message, function(response){
 
 		setTimeout( function(){
-      console.log("should have sent");
+      console.log(response);
   		
      //  try{
      //    twilioClient.sendMessage({
