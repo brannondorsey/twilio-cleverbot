@@ -17,7 +17,7 @@ app.post('/cleverbot', function(req, res){
   	  !_.isUndefined(getQueryParam("From", req)) &&
   	  !_.isUndefined(getQueryParam("Body", req))){
 
-    text(getQueryParam("Body"), getQueryParam("From", req));
+    text(getQueryParam("Body", req), getQueryParam("From", req));
   
     console.log(timestamp);
   	console.log("To: " + getQueryParam("To", req));
