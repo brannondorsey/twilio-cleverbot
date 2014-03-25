@@ -12,7 +12,7 @@ var app = express();
 var server;
 var rateModel;
 
-fs.readFile('data/rate_model.json', 'utf-8', function(err, data){ 
+fs.readFile(__dirname + '/../data/rate_model.json', 'utf-8', function(err, data){ 
 
     if (err) throw err;
     rateModel = JSON.parse(data);
