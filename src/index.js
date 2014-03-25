@@ -1,5 +1,6 @@
 var config = require('../config'),
 _ = require('underscore')._,
+moment = require('moment'),
 express = require('express'),
 twilio = require('twilio')(config.accountSid, config.authToken),
 Cleverbot = require('cleverbot-node');
@@ -11,23 +12,21 @@ var app = express();
 app.use(express.urlencoded());
 app.post('/cleverbot', function(req, res){
 
-  console.log("got a request!");
-  console.log(req.body);
+  var timestamp = moment().format("YYYY/MM/DD HH:mm:dd");
   if (!_.isUndefined(getQueryParam("To", req)) &&
   	  !_.isUndefined(getQueryParam("From", req)) &&
   	  !_.isUndefined(getQueryParam("Body", req))){
+
+    text(getQueryParam("Body"), getQueryParam("From", req));
+  
+    console.log(timestamp);
   	console.log("To: " + getQueryParam("To", req));
   	console.log("From: " + getQueryParam("From", req));
-  	console.log("Text: " + getQueryParam("Body", req));
+  	console.log("Text: " + getQueryParam("Bçody", req));
   	console.log();
   }
 
-  res.send("Message Recieved");
-  // res.send('Hi Brannon!');
-  // if (isSentFromTwilio) {
-  // text(number);
-  // console.log("recieved from " + TWILIO_NUMBER ": " + TWILIO_MESSAGE);
-  // }
+  res.send("Post ping recieved at " + timestamp);
 });
 
 var server = app.listen(config.port, function() {
@@ -49,7 +48,7 @@ function text(message, phoneNumber) {
 				body: response,    
 			}, function(err, message) {
 				if (err) throw err;
-				console.log("sent to " + phoneNumber + ": " + response); 
+				console.log("Sent to " + phoneNumber + ": " + response); 
 			});
 
 		}, 1);
