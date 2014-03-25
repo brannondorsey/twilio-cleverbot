@@ -2,13 +2,12 @@ var config = require('../config'),
 _ = require('underscore')._,
 moment = require('moment'),
 express = require('express'),
-twilio = require('twilio'),
+twilioClient = require('twilio')(config.accountSid, config.authToken),
 Cleverbot = require('cleverbot-node');
  
 var cleverbot = new Cleverbot();
 var express = require('express');
 var app = express();
-var twilioClient = new twilio.RestClient(config.accountSid, config.authToken);
 
 app.use(express.urlencoded());
 app.post('/cleverbot', function(req, res){
@@ -42,11 +41,11 @@ function text(message, phoneNumber) {
 	cleverbot.write(message, function(response){
 
 		setTimeout( function(){
-
-			twilioClient.sms.messages.create({
-				To: phoneNumber,  
-				From: config.twilioNumber,
-				Body: response,    
+      console.log("should have sent");
+			twilioClient.sendMessage({
+				to: phoneNumber,  
+				from: config.twilioNumber,
+				body: response,    
 			}, function(err, message) {
 				if (err) throw err;
 				console.log("Sent to " + phoneNumber + ": " + response); 
@@ -60,3 +59,4 @@ function text(message, phoneNumber) {
 function getQueryParam(name, req) {
     return req.body[name];
 }
+
