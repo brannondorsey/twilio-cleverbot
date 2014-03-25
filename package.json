@@ -13,20 +13,19 @@
     "email": "brannon@brannondorsey.com"
   },
   "author": "Brannon Dorsey <brannon@brannondorsey.com> (http://brannondorsey.com)",
-  "directories": {
-    "lib": "src"
-  },
+  "main": "./src",
   "repository": {
     "type": "git",
     "url": "git://github.com/brannondorsey/twilio-cleverbot.git"
   },
   "dependencies" : {
-    "twilio": "1.6.0",
-    "express": "3.5.0",
+    "twilio": "1.6.x",
+    "express": "3.5.x",
     "cleverbot-node": "0.1.2",
-    "underscore": "1.6.0",
-    "moment": "2.5.1"
+    "underscore": "1.6.x",
+    "moment": "2.5.x"
   },
+  "scripts": {"start": "node twilio-cleverbot"},
   "engines": {
     "node": ">=v0.10.0"
   },

@@ -26,6 +26,7 @@ fs.readFile('data/rate_model.json', 'utf-8', function(err, data){
           !_.isUndefined(getQueryParam("From", req)) &&
           !_.isUndefined(getQueryParam("Body", req))){
 
+        console.log();
         console.log(timestamp);
         console.log("To: " + getQueryParam("To", req));
         console.log("From: " + getQueryParam("From", req));
@@ -51,8 +52,8 @@ function text(message, phoneNumber) {
 	cleverbot.write(message, function(response){
 
     var timeout = _.sample(rateModel) * 1000 * 60;
-    console.log("Will respond with: \"" + response.message + "\" in " + timeout / 1000 / 60 + " minutes.");
-    console.log();
+    console.log("Will respond with: \"" + response.message + "\" in " + (timeout / 1000 / 60) + " minutes.");
+    
 		setTimeout( function(){
 
       twilioClient.sendMessage({
