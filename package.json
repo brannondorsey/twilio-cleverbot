@@ -23,7 +23,8 @@
   "dependencies" : {
     "twilio": "1.6.0",
     "express": "3.5.0",
-    "cleverbot-node": "0.1.2"
+    "cleverbot-node": "0.1.2",
+    "underscore": "1.6.0"
   },
   "engines": {
     "node": ">=v0.10.0"

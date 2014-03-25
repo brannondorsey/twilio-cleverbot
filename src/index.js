@@ -1,30 +1,43 @@
-var config = require('./config'),
+var config = require('../config'),
 express = require('express'),
 twilio = require('twilio')(config.accountSid, config.authToken),
 Cleverbot = require('cleverbot-node');
  
+var cleverbot = new Cleverbot();
 var express = require('express');
 var app = express();
 
-app.get('/', function(req, res){
+app.get('/cleverbot', function(req, res){
+
   res.send('Hi Brannon!');
+  // if (isSentFromTwilio) {
+  // text(number);
+  // console.log("recieved from " + TWILIO_NUMBER ": " + TWILIO_MESSAGE);
+  // }
 });
 
-
-var server = app.listen(888, function() {
+var server = app.listen(config.port, function() {
     console.log('Listening on port %d', server.address().port);
 });
 
-// cleverbot = new Cleverbot();
-// cleverbot.write("Hi cleverbot", function(response){
-// 	console.log(response);
-// });
+function text(message, phoneNumber) {
 
-// //require the Twilio module and create a REST client 
-// var twilioClient = require('twilio')(accountSid, authToken); 
- 
-// twilioClient.messages.create({  
-// 	from: confi.from,    
-// }, function(err, message) { 
-// 	console.log(message.sid); 
-// });
+	var min = 0.3; // in minutes.
+	var max = 5;
+
+	cleverbot.write(message, function(response){
+
+		setTimeout( function(){
+
+			twilio.messages.create({
+				to: phoneNumber,  
+				from: config.twilioNumber,
+				body: response,    
+			}, function(err, message) {
+				if (err) throw err;
+				console.log("sent to " + phoneNumber + ": " + response); 
+			});
+
+		}, _.random(min, max) * 1000 * 60);
+	});
+}
