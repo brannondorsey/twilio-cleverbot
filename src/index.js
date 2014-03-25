@@ -42,14 +42,19 @@ function text(message, phoneNumber) {
 
 		setTimeout( function(){
       console.log("should have sent");
-			twilioClient.sendMessage({
-				to: phoneNumber,  
-				from: config.twilioNumber,
-				body: response,    
-			}, function(err, message) {
-				if (err) throw err;
-				console.log("Sent to " + phoneNumber + ": " + response); 
-			});
+  		
+      try{
+        twilioClient.sendMessage({
+  				to: phoneNumber,  
+  				from: config.twilioNumber,
+  				body: response,    
+  			}, function(err, message) {
+  				if (err) throw err;
+  				console.log("Sent to " + phoneNumber + ": " + response); 
+  			});
+      } catch (e) {
+        throw e;
+      }
 
 		}, 1);
 		// }, _.random(min, max) * 1000 * 60);
