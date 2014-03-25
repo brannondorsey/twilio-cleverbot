@@ -36,20 +36,20 @@ Text your Twilio number :)
 
 ## Upkeep
 
-To keep your server running you need to start the server in the background. To start Twilio-cleverbot in the background run:
+To keep your server running you need to start the process in the background. To do this start Twilio-cleverbot like this:
 
 	nohup node twilio-cleverbot &
 	
-__Note__: You may need a [screen]() so that you can log off without exiting the server process.
+__Note__: You may need a [screen](http://www.howtoforge.com/linux_screen) so that you can log off without exiting the server process.
  
-Unfortunately, if the server crashes for some reason you won't be able to text Cleverbot. To automatically restart twilio-cleverbot when it quits unexpectedly use [Forever](https://blog.nodejitsu.com/keep-a-nodejs-server-up-with-forever/):
+Unfortunately, if the server crashes for some reason you won't be able to text Cleverbot. To automatically restart Twilio-cleverbot when it quits unexpectedly use [Forever](https://blog.nodejitsu.com/keep-a-nodejs-server-up-with-forever/):
 
 	npm install forever -g
 	forever start twilio-cleverbot
 	
-You can check if your server is running by pointing your browser to:
+You can check if your server is up and running by pointing your browser to:
 
 	http://yourdomain:yourport
 
-If it is you should get the following response:
-<p style="font-family: 'Times New Roman', Times, serif; font-size: 18px">Twilio-cleverbot is running! Text +15692878254 to chat with <a href="http://cleverbot.com"">Cleverbot</a>.</p>
+If it is running correctly you should get the following response:
+<p style="font-family: 'Times New Roman', Times, serif; font-size: 18px">"Twilio-cleverbot is running! Text +15692878254 to chat with <a href="http://cleverbot.com"">Cleverbot</a>."</p>
