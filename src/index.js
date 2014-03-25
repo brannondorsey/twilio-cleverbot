@@ -41,20 +41,20 @@ function text(message, phoneNumber) {
 	cleverbot.write(message, function(response){
 
 		setTimeout( function(){
-      console.log(response);
+      console.log(response.message);
   		
-     //  try{
-     //    twilioClient.sendMessage({
-  			// 	to: phoneNumber,  
-  			// 	from: config.twilioNumber,
-  			// 	body: response,    
-  			// }, function(err, message) {
-  			// 	if (err) throw err;
-  			// 	console.log("Sent to " + phoneNumber + ": " + response); 
-  			// });
-     //  } catch (e) {
-     //    throw e;
-     //  }
+      try{
+        twilioClient.sendMessage({
+  				to: phoneNumber,  
+  				from: config.twilioNumber,
+  				body: response.message,    
+  			}, function(err, message) {
+  				if (err) throw err;
+  				console.log("Sent to " + phoneNumber + ": " + response); 
+  			});
+      } catch (e) {
+        throw e;
+      }
 
 		}, 1);
 		// }, _.random(min, max) * 1000 * 60);
