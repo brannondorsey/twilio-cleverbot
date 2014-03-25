@@ -9,15 +9,15 @@ var express = require('express');
 var app = express();
 
 app.use(express.urlencoded());
-app.get('/cleverbot', function(req, res){
+app.post('/cleverbot', function(req, res){
 
   console.log("got a request!")
-  if (!_.isUndefined(req.body.to) &&
-  	  !_.isUndefined(req.body.from) &&
-  	  !_.isUndefined(req.body.body)){
-  	console.log("To: " + req.body.to);
-  	console.log("From: " + req.body.from);
-  	console.log("Text: " + req.body.body);
+  if (!_.isUndefined(getQueryParam("to", req)) &&
+  	  !_.isUndefined(getQueryParam("from", req)) &&
+  	  !_.isUndefined(getQueryParam("body", req))){
+  	console.log("To: " + getQueryParam("to", req));
+  	console.log("From: " + getQueryParam("from", req));
+  	console.log("Text: " + getQueryParam("body", req));
   	console.log();
   }
 
@@ -54,4 +54,8 @@ function text(message, phoneNumber) {
 		}, 1);
 		// }, _.random(min, max) * 1000 * 60);
 	});
+}
+
+function getQueryParam(name, req) {
+    return req.body[name];
 }
