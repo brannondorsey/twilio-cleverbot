@@ -20,7 +20,7 @@ app.get('/cleverbot', function(req, res){
   	console.log();
   }
 
-  res.send("Message Recieved");
+  req.send("Message Recieved");
   // res.send('Hi Brannon!');
   // if (isSentFromTwilio) {
   // text(number);
