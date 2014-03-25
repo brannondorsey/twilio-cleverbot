@@ -12,7 +12,7 @@ var app = express();
 app.use(express.urlencoded());
 app.post('/cleverbot', function(req, res){
 
-  var timestamp = moment().format("YYYY/MM/DD HH:mm:dd");
+  var timestamp = moment().format("YYYY/MM/DD HH:mm:ss");
   if (!_.isUndefined(getQueryParam("To", req)) &&
   	  !_.isUndefined(getQueryParam("From", req)) &&
   	  !_.isUndefined(getQueryParam("Body", req))){
@@ -22,7 +22,7 @@ app.post('/cleverbot', function(req, res){
     console.log(timestamp);
   	console.log("To: " + getQueryParam("To", req));
   	console.log("From: " + getQueryParam("From", req));
-  	console.log("Text: " + getQueryParam("Bçody", req));
+  	console.log("Text: " + getQueryParam("Body", req));
   	console.log();
   }
 
@@ -42,7 +42,7 @@ function text(message, phoneNumber) {
 
 		setTimeout( function(){
 
-			twilio.messages.create({
+			twilio.sms.messages.create({
 				to: phoneNumber,  
 				from: config.twilioNumber,
 				body: response,    
