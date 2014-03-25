@@ -33,3 +33,14 @@ Start the server from outside of the cloned directory:
 	node twilio-cleverbot 
 	
 Text your Twilio number :)
+
+## Upkeep
+
+To keep your server running you need to start the server in the background. If you are remotely logged in to a server be sure to use a [screen]() so that you can log off without exiting the server process. To start Twilio-cleverbot in background run (in the screen):
+
+	nohup node twilio-cleverbot &
+	
+Unfortunately, if the server crashes for some reason you won't be able to text cleverbot. To automatically restart twilio-cleverbot when it quits unexpectedly use [Forever](https://blog.nodejitsu.com/keep-a-nodejs-server-up-with-forever/):
+
+	npm install forever -g
+	forever start twilio-cleverbot
