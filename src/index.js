@@ -7,9 +7,20 @@ var cleverbot = new Cleverbot();
 var express = require('express');
 var app = express();
 
-app.get('/cleverbot', function(req, res){
+app.use(express.urlencoded());
+app.post('/cleverbot', function(req, res){
 
-  res.send('Hi Brannon!');
+  if (_.isUndefined(req.body.to) &&
+  	  _.isUndefined(req.body.from) &&
+  	  _.isUndefined(req.body.body)){
+  	console.log("To: " + req.body.to);
+  	console.log("From: " + req.body.from);
+  	console.log("Text: " + req.body.body);
+  	console.log();
+  }
+
+  app.send(200, "Message Recieved");
+  // res.send('Hi Brannon!');
   // if (isSentFromTwilio) {
   // text(number);
   // console.log("recieved from " + TWILIO_NUMBER ": " + TWILIO_MESSAGE);
@@ -38,6 +49,7 @@ function text(message, phoneNumber) {
 				console.log("sent to " + phoneNumber + ": " + response); 
 			});
 
-		}, _.random(min, max) * 1000 * 60);
+		}, 1);
+		// }, _.random(min, max) * 1000 * 60);
 	});
 }
