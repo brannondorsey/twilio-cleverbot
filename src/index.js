@@ -36,32 +36,26 @@ var server = app.listen(config.port, function() {
 function text(message, phoneNumber) {
 
 	var min = 0.3; // in minutes.
-	var max = 5;
+	var max = 3.5;
 
 	cleverbot.write(message, function(response){
 
 		setTimeout( function(){
-      console.log(response.message);
   		
-      try{
-        twilioClient.sendMessage({
-  				to: phoneNumber,  
-  				from: config.twilioNumber,
-  				body: response.message,    
-  			}, function(err, message) {
-  				if (err) throw err;
-  				console.log("Sent to " + phoneNumber + ": " + response); 
-  			});
-      } catch (e) {
-        throw e;
-      }
+      twilioClient.sendMessage({
+				to: phoneNumber,  
+				from: config.twilioNumber,
+				body: response.message,    
+			}, function(err, message) {
+				if (err) throw err;
+				console.log("Sent to " + phoneNumber + ": " + response.message); 
+			});
 
-		}, 1);
-		// }, _.random(min, max) * 1000 * 60);
+    }, _.random(min, max) * 1000 * 60);
+
 	});
 }
 
 function getQueryParam(name, req) {
     return req.body[name];
 }
-
