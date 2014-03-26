@@ -58,8 +58,9 @@ function text(message, phoneNumber) {
 	//cleverbot.write(message, function(response){
 
     var timeout = _.sample(rateModel) * 1000 * 60;
-    console.log("Will respond with: \"" + response.message + "\" in " + (timeout / 1000 / 60) + " minutes.");
     var response = eliza.transform(message);
+    console.log("Will respond with: \"" + response + "\" in " + (timeout / 1000 / 60) + " minutes.");
+    
 		setTimeout( function(){
 
       twilioClient.sendMessage({
