@@ -13,6 +13,7 @@ var express = require('express');
 var app = express();
 var server;
 var rateModel;
+var numbers = [];
 
 fs.readFile(__dirname + '/../data/rate_model.json', 'utf-8', function(err, data){ 
 
@@ -58,7 +59,14 @@ function text(message, phoneNumber) {
 	//cleverbot.write(message, function(response){
 
     var timeout = _.sample(rateModel) * 1000 * 60;
-    var response = eliza.transform(message);
+    var response;
+    if (_.indexOf(numbers, phoneNumber) == -1) {
+      console.log("NEW NUMBER")
+      response = eliza.getInitial();
+      numbers.push(phoneNumber)
+    } else {
+     response = eliza.transform(message);
+    }
     console.log("Will respond with: \"" + response + "\" in " + (timeout / 1000 / 60) + " minutes.");
     
 		setTimeout( function(){
