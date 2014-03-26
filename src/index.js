@@ -4,9 +4,11 @@ moment = require('moment'),
 fs = require('fs'),
 express = require('express'),
 twilioClient = require('twilio')(config.accountSid, config.authToken),
-Cleverbot = require('cleverbot-node');
+Cleverbot = require('cleverbot-node'),
+ElizaBot = require('./ElizaBot');
  
 var cleverbot = new Cleverbot();
+var eliza = new ElizaBot();
 var express = require('express');
 var app = express();
 var server;
@@ -53,25 +55,25 @@ function text(message, phoneNumber) {
 	// var min = 0.3; // in minutes.
 	// var max = 3.5; // for use with _.random(min, max) in setTimeout
 
-	cleverbot.write(message, function(response){
+	//cleverbot.write(message, function(response){
 
     var timeout = _.sample(rateModel) * 1000 * 60;
     console.log("Will respond with: \"" + response.message + "\" in " + (timeout / 1000 / 60) + " minutes.");
-    
+    var response = eliza.transform(message);
 		setTimeout( function(){
 
       twilioClient.sendMessage({
 				to: phoneNumber,  
 				from: config.twilioNumber,
-				body: response.message,    
+				body: response,    
 			}, function(err, message) {
 				if (err) throw err;
-				console.log("Sent to " + phoneNumber + ": " + response.message); 
+				console.log("Sent to " + phoneNumber + ": " + response); 
 			});
 
     }, timeout);
 
-	});
+	//});
 }
 
 function getQueryParam(name, req) {
