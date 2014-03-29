@@ -53,20 +53,25 @@ fs.readFile(__dirname + '/../data/rate_model.json', 'utf-8', function(err, data)
 
 function text(message, phoneNumber) {
 
-	// var min = 0.3; // in minutes.
-	// var max = 3.5; // for use with _.random(min, max) in setTimeout
 
-	//cleverbot.write(message, function(response){
+	cleverbot.write(message, function(response){
 
     var timeout = _.sample(rateModel) * 1000 * 60;
     var response;
-    if (_.indexOf(numbers, phoneNumber) == -1) {
-      console.log("NEW NUMBER")
-      response = eliza.getInitial();
-      numbers.push(phoneNumber)
+
+    if (response.message != "<html>") {
+      response = response.message;
     } else {
-     response = eliza.transform(message);
+
+        if (_.indexOf(numbers, phoneNumber) == -1) {
+          console.log("NEW NUMBER")
+          response = eliza.getInitial();
+          numbers.push(phoneNumber);
+        } else {
+         response = eliza.transform(message);
+        }
     }
+      
     console.log("Will respond with: \"" + response + "\" in " + (timeout / 1000 / 60) + " minutes.");
     
 		setTimeout( function(){
@@ -82,7 +87,7 @@ function text(message, phoneNumber) {
 
     }, timeout);
 
-	//});
+	});
 }
 
 function getQueryParam(name, req) {
