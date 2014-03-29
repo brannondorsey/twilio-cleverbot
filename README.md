@@ -1,6 +1,6 @@
 # Twilio-cleverbot
 
-Text [Cleverbot](http://cleverbot.com) from your phone. Cleverbot responds at a rate that is modeled after a real person. Using Node.js [Twilio](https://www.npmjs.org/package/twilio) and [Cleverbot-node](https://www.npmjs.org/package/cleverbot-node) on a server created with [Express](https://www.npmjs.org/package/express). 
+Text [Cleverbot](http://cleverbot.com) from your phone. Cleverbot responds at a rate that is modeled after a real person. Uses Node.js [Twilio](https://www.npmjs.org/package/twilio) and [Cleverbot-node](https://www.npmjs.org/package/cleverbot-node) on a server created with [Express](https://www.npmjs.org/package/express). If the Cleverbot API is down (see [this issue](https://github.com/brannondorsey/twilio-cleverbot/issues/1)), Twilio-cleverbot defaults to using the [Eliza chat bot](http://nlp-addiction.com/eliza/).
 
 ![Response Time Histogram](data/rate_histogram.png)
 
